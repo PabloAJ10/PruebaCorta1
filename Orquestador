@@ -1,0 +1,91 @@
+Primer Examen Pablo Amador J
+using Capa_Modelo.Nodo;
+using System.Xml.Linq;
+
+namespace Capa_Logica.Lista_Simple
+{
+    public class Orquestador
+    {
+        private NodoInt cabeza;
+
+        public void Agregar_NodoInt(int valor) {
+
+            NodoInt nodoNuevo = new NodoInt(valor);
+
+            if (cabeza == null)
+            {
+                cabeza = nodoNuevo;
+            }
+            else {
+
+                NodoInt nodoActual = cabeza;
+
+                while (nodoActual.Siguiente != null) { 
+                    nodoActual = nodoActual.Siguiente;
+                }
+
+                nodoActual.Siguiente = nodoNuevo;
+
+
+            }
+        
+        }
+
+        public void EliminarNodo(int value)
+        {
+            if (cabeza == null)
+            {
+                Console.WriteLine("La lista está vacía.");
+                return;
+            }
+
+            if (cabeza.Valor == value)
+            {
+                cabeza = cabeza.Siguiente;
+                return;
+            }
+
+            NodoInt current = cabeza;
+            NodoInt previous = null;
+
+            while (current != null && current.Valor != value)
+            {
+
+                previous = current;
+                current = current.Siguiente;
+
+            }
+
+            if (current == null)
+
+            {
+                Console.WriteLine("El nodo con el valor especificado no existe en la lista.");
+                return;
+
+            }
+
+            previous.Siguiente = current.Siguiente;
+        }
+
+
+        public void Mostrar_Lista_Simple() {
+
+            NodoInt nodoActual = cabeza;
+
+            if (nodoActual !=null)
+            {               
+                while (nodoActual!=null)
+                {
+                    int valorActual = nodoActual.Valor;
+                    Console.WriteLine(valorActual.ToString());
+                    nodoActual = nodoActual.Siguiente;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
